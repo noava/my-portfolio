@@ -1,0 +1,41 @@
+$text: #e4e2c4;
+$background: #2f282e;
+$card: #3a3234;
+$primary: #faf3a3;
+$secondary: #475946;
+$accent: #819c87;
+$navbarfooter: #352a34;
+
+$headerheight: 80px;
+$footerheight: 250px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav {
+  font-style: italic;
+  font-weight: 900;
+}
+
+body {
+  min-height: 100vh;
+  color: $text;
+  background: $background;
+  line-height: 1.6;
+  font-family: 'Saira', sans-serif;
+  font-size: 15px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

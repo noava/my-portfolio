@@ -1,0 +1,12 @@
+@import './base.scss';
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $primary;
+  border-radius: 4px;
+  margin: 2px;
+}
