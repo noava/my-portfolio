@@ -18,11 +18,9 @@
     </div>
     <!-- Each Project will be listed here as a component by inputting a number -->
     <!-- For each Custom Project there will be different styling -->
-    <!-- <BasicProject :id="1" /> -->
+    <BasicProject :id="1" />
     <!-- <CrewBadgeProject :id="2" /> -->
-    <!-- <BasicProject :id="2" /> -->
-
-    <!-- <BasicProject :id="3" /> -->
+    <BasicProject :id="3" />
   </main>
 </template>
 
