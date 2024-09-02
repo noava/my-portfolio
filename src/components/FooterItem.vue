@@ -74,7 +74,7 @@ import { RouterLink } from 'vue-router'
     }
 
     .meat {
-      width: 400px;
+      width: 350px;
       background: #533224;
       border-radius: 50px;
     }
