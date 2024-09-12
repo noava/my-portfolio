@@ -40,7 +40,7 @@ const buttonStyles = {
   box-shadow:
     0px 8px var(--button-bg-color, $primary),
     0px 11px var(--button-border-color, $secondary);
-  padding: 8px 80px;
+  padding: 8px 60px;
   font-size: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -58,7 +58,8 @@ const buttonStyles = {
 
 @media (min-width: 640px) {
   .funky-button {
-    font-size: 40px;
+    padding: 8px 80px;
+    font-size: 30px;
   }
 }
 </style>

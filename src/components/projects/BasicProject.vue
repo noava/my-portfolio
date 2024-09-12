@@ -1,11 +1,10 @@
 <template>
-  <hr />
-  <div class="container self-center lg:flex lg:justify-between lg:items-start my-16">
-    <div class="flex-grow lg:mt-20 lg:mr-40 lg:text-right mx-4">
+  <div class="lg:flex lg:justify-between lg:items-start my-16">
+    <div class="lg:mt-20 lg:mr-40 lg:text-right mx-4">
       <h1 class="text-[15vw]/[15vw] lg:text-8xl" :style="{ color: title_color }">{{ title }}</h1>
-      <h2 class="text-4xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
+      <h2 class="text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
       <p
-        class="text-2xl lg:text-4xl my-12 lg:leading-relaxed"
+        class="text-2xl my-6 lg:my-12 lg:leading-relaxed"
         v-html="description"
         :style="{ color: description_color }"
       ></p>
@@ -17,7 +16,7 @@
         :button_bg_color="button_bg_color"
         :button_border_color="button_border_color"
       />
-      <p class="text-3xl mt-12 mb-4 text-right" :style="{ color: undertitle_color }">
+      <p class="text-2xl mt-12 mb-4 text-right" :style="{ color: undertitle_color }">
         {{ date }}
       </p>
     </div>
@@ -37,7 +36,11 @@
     class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
     @click="toggleFullscreen"
   >
-    <img :src="image_url" :alt="'Image of ' + title" class="rounded-2xl max-w-full max-h-full" />
+    <img
+      :src="image_url"
+      :alt="'Image of ' + title"
+      class="rounded-2xl max-w-full max-h-full p-2"
+    />
   </div>
 </template>
 

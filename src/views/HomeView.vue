@@ -5,13 +5,13 @@
       <h1 class="mx-[15vw] mb-[0vw]">Vezina</h1>
     </div>
     <!-- <BentoRectangles /> -->
-    <div class="flex flex-row justify-around [&>*]:text-8xl">
+    <div class="flex flex-row justify-around [&>*]:text-8xl my-10">
       <span class="material-symbols-outlined">keyboard_arrow_down</span>
       <span class="material-symbols-outlined">keyboard_arrow_down</span>
       <span class="material-symbols-outlined">keyboard_arrow_down</span>
     </div>
     <section id="projects">
-      <div class="flex flex-col items-center mb-12 lg:my-12">
+      <div class="flex flex-col items-center mb-12 lg:mb-12">
         <h1 class="text-primary text-[11vw] lg:text-[9xl] tracking-[0.5em] -mr-[0.5em] lg:mb-10">
           Projects
         </h1>
@@ -19,8 +19,11 @@
       </div>
       <!-- Each Project will be listed here as a component by inputting a number -->
       <!-- For each Custom Project there will be different styling -->
+      <hr />
       <BasicProject :id="1" />
-      <!-- <CrewBadgeProject :id="2" /> -->
+      <hr />
+      <CrewBadgeProject :id="2" />
+      <hr />
       <BasicProject :id="3" />
     </section>
   </main>
