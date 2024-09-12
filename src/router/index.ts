@@ -12,6 +12,11 @@ const router = createRouter({
       component: HomeView
     },
     {
+      path: '/projects',
+      name: 'projects',
+      component: HomeView
+    },
+    {
       path: '/brandguide',
       name: 'brandguide',
       component: BrandGuide
@@ -22,8 +27,18 @@ const router = createRouter({
       component: ErrorView
     }
   ],
-  scrollBehavior() {
-    return { top: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    if (to.path === '/projects') {
+      return {
+        el: '#projects',
+        behavior: 'smooth'
+      }
+    }
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
   }
 })
 
