@@ -40,8 +40,8 @@ const buttonStyles = {
   box-shadow:
     0px 8px var(--button-bg-color, $primary),
     0px 11px var(--button-border-color, $secondary);
-  padding: 8px 80px;
-  font-size: 40px;
+  padding: 8px 60px;
+  font-size: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
   -webkit-tap-highlight-color: transparent;
@@ -53,6 +53,13 @@ const buttonStyles = {
   &:active {
     box-shadow: 0px 2px var(--button-border-color, $secondary);
     transform: translateY(9px);
+  }
+}
+
+@media (min-width: 640px) {
+  .funky-button {
+    padding: 8px 80px;
+    font-size: 30px;
   }
 }
 </style>

@@ -3,7 +3,7 @@
     <RouterLink class="logo" to="/">Noava</RouterLink>
 
     <div :class="['links', { open: isMenuOpen }]" @click="closeMenu">
-      <RouterLink class="nav-item" to="/">Projects</RouterLink>
+      <RouterLink class="nav-item" to="/projects">Projects</RouterLink>
       <RouterLink class="nav-item" to="/brandguide">Brand Guide</RouterLink>
       <RouterLink class="nav-item" to="/nothin">Nothin</RouterLink>
     </div>

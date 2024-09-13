@@ -10,7 +10,7 @@
         <RouterLink class="nav-item" to="/brandguide">Brand Guide</RouterLink>
       </div>
       <div class="bread-bottom">
-        <RouterLink class="nav-item" to="/">Projects</RouterLink>
+        <RouterLink class="nav-item" to="/projects">Projects</RouterLink>
       </div>
     </div>
     <div class="legal">© 2024 Noava</div>
@@ -74,7 +74,7 @@ import { RouterLink } from 'vue-router'
     }
 
     .meat {
-      width: 400px;
+      width: 350px;
       background: #533224;
       border-radius: 50px;
     }
