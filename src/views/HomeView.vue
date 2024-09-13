@@ -1,10 +1,6 @@
 <template>
   <main>
-    <div class="self-center ml-[8vw] max-lg:mt-5 text-[15vw] lg:text-[10vw]">
-      <h1 class="-mb-[7vw]">Niklas</h1>
-      <h1 class="mx-[15vw] mb-[0vw]">Vezina</h1>
-    </div>
-    <!-- <BentoRectangles /> -->
+    <BentoRectangles />
     <div class="flex flex-row justify-around [&>*]:text-8xl my-10">
       <span class="material-symbols-outlined">keyboard_arrow_down</span>
       <span class="material-symbols-outlined">keyboard_arrow_down</span>
