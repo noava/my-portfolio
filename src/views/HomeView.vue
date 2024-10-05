@@ -21,6 +21,8 @@
       <CrewBadgeProject :id="2" />
       <hr />
       <BasicProject :id="3" />
+      <hr />
+      <BasicProject :id="4" />
     </section>
   </main>
 </template>
