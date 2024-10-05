@@ -22,18 +22,29 @@
         problem-solving to bring ideas to life on both digital and print platforms.
       </p>
     </div>
-    <div
-      class="row-span-3 col-start-3 row-start-7 bg-secondary rounded p-6 flex flex-col justify-between"
-    >
+    <div class="row-span-3 col-start-3 row-start-7 bg-secondary rounded p-6 flex flex-col">
       <p class="text-light font-medium text-lg lg:text-xl leading-relaxed">
         <b>I enjoy designing.</b>
         Whether it's developing a user interface or combining elements to create a poster.
       </p>
-      <img
-        class="w-full p-2"
-        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/3-cards.png"
-        alt="Cards I've designed"
-      />
+      <div class="grid place-items-center h-[16rem] relative">
+        <img
+          v-for="(image, index) in images"
+          :key="index"
+          :src="image.src"
+          :alt="image.alt"
+          class="w-[8rem] absolute transition-transform lg:hover:scale-110 cursor-pointer"
+          :class="image.position"
+          :style="{ zIndex: index }"
+          title="Double click to open fullscreen image"
+          @click="drawCard(index)"
+          @dblclick="
+            openImage(
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/3-cards.png'
+            )
+          "
+        />
+      </div>
     </div>
     <div
       class="row-span-2 col-start-1 row-start-8 bg-primary rounded h-48 overflow-hidden relative"
@@ -51,7 +62,7 @@
     <div class="max-lg:hidden col-start-2 row-start-4"><!-- empty short --></div>
     <div class="row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-[32rem] lg:h-[56rem]">
       <div
-        class="size-full bg-fixed bg-cover bg-center rounded"
+        class="size-full bg-fixed bg-cover bg-center rounded lg:hover:scale-100"
         style="
           background-image: url(https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/tutrle.jpg);
         "
@@ -60,8 +71,9 @@
 
     <div class="col-start-3 row-start-10 p-4">
       <span class="text-xl leading-relaxed"
-        >This <b>website</b> is made using vue, typescript, supabase and tailwindcss. Check out the
-        repo <a class="text-accent text-bold" href="https://github.com/noava/my-portfolio">here</a>.
+        >This <b>website</b> is made using vue, gsap, typescript, supabase, pinia and tailwindcss.
+        Check out the repo
+        <a class="text-accent text-bold" href="https://github.com/noava/my-portfolio">here</a>.
       </span>
     </div>
     <div
@@ -71,33 +83,55 @@
         >NOAVA</span
       >
     </div>
-    <div class="max-lg:hidden row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded">
+    <div class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[24rem]">
       <div
-        class="size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
-      ></div>
+        class="flex items-center justify-center size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
+      >
+        <img
+          class="h-[20rem] p-2 lg:hover:scale-110 cursor-pointer"
+          src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Cowboy%20Bebop.webp"
+          alt="Poster I've designed"
+          @click="
+            openImage(
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Cowboy%20Bebop.webp'
+            )
+          "
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useImageStore } from '@/stores/images'
 
+const imageStore = useImageStore()
 const noava_lines = ref(Array(16).fill(''))
-</script>
-
-<style lang="scss">
-@import '../assets/main.scss';
-
-.rectangle-noava-big {
-  width: 21.4em;
-
-  div {
-    font-size: 17em;
-    font-weight: 900;
-    font-style: italic;
-    color: $background;
-    transform: rotate(90deg);
-    letter-spacing: 0rem;
+const images = ref([
+  {
+    src: 'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/Song-selected.svg',
+    alt: 'Song Selected',
+    position: 'top-5'
+  },
+  {
+    src: 'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/Song-vetoed.svg',
+    alt: 'Song Vetoed',
+    position: 'rotate-[25deg] right-16 lg:right-8 top-16'
+  },
+  {
+    src: 'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/Song-card.svg',
+    alt: 'Song Card',
+    position: 'rotate-[-25deg] left-16 lg:left-8 top-16'
   }
+])
+
+const drawCard = (index: number) => {
+  const selectedImage = images.value.splice(index, 1)[0]
+  images.value.push(selectedImage)
 }
-</style>
+
+const openImage = (url: string) => {
+  imageStore.selectImage(url)
+}
+</script>
