@@ -40,7 +40,7 @@
           @click="drawCard(index)"
           @dblclick="
             openImage(
-              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/3-cards.png'
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/3-cards.png'
             )
           "
         />
@@ -64,7 +64,7 @@
       <div
         class="size-full bg-fixed bg-cover bg-center rounded lg:hover:scale-100"
         style="
-          background-image: url(https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/tutrle.jpg);
+          background-image: url(https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/tutrle.jpg);
         "
       ></div>
     </div>
@@ -89,11 +89,11 @@
       >
         <img
           class="h-[20rem] p-2 lg:hover:scale-110 cursor-pointer"
-          src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Cowboy%20Bebop.webp"
+          src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
           alt="Poster I've designed"
           @click="
             openImage(
-              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Cowboy%20Bebop.webp'
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'
             )
           "
         />

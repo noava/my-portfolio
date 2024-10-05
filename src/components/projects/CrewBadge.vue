@@ -4,7 +4,7 @@
       <h1 class="text-[14vw]/[15vw] lg:text-8xl" :style="{ color: title_color }">{{ title }}</h1>
       <h2 class="text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
       <img
-        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Barcode.svg?t=2024-07-02T00%3A23%3A52.779Z"
+        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/CrewBadge/Barcode.svg?t=2024-07-02T00%3A23%3A52.779Z"
         alt="SVG of barcode"
         class="max-w-full my-6 lg:my-12"
       />
@@ -17,7 +17,7 @@
         {{ date }}
       </p>
       <img
-        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Electronic_Box.svg"
+        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/CrewBadge/Electronic_Box.svg"
         alt="SVG of electronic box"
         class="w-[80%] ml-8 mt-[-4rem] mb-4"
       />
