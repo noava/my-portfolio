@@ -24,22 +24,9 @@
       v-if="image_url"
       :src="image_url"
       :alt="'Image of ' + title"
-      class="rounded-2xl m-auto max-sm:w-[90%] w-full lg:max-w-[50%]"
+      class="rounded-2xl m-auto max-sm:w-[90%] w-full lg:max-w-[50%] cursor-pointer"
       :style="{ border: `${image_border} solid 10px` }"
-      @click="toggleFullscreen"
-    />
-  </div>
-
-  <!-- Image Fullscreen -->
-  <div
-    v-if="isFullscreen"
-    class="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50"
-    @click="toggleFullscreen"
-  >
-    <img
-      :src="image_url"
-      :alt="'Image of ' + title"
-      class="rounded-2xl max-w-full max-h-full p-2"
+      @click="openImage(image_url)"
     />
   </div>
 </template>
@@ -48,6 +35,8 @@
 import { supabase } from '../../supabase'
 import { onMounted, ref, toRefs } from 'vue'
 import DynamicButton from '../buttons/DynamicButton.vue'
+import { useImageStore } from '@/stores/images'
+const imageStore = useImageStore()
 
 const props = defineProps<{ id: number }>()
 const { id } = toRefs(props)
@@ -112,8 +101,7 @@ async function getProjects() {
   }
 }
 
-const isFullscreen = ref(false)
-const toggleFullscreen = () => {
-  isFullscreen.value = !isFullscreen.value
+const openImage = (url: string) => {
+  imageStore.selectImage(url)
 }
 </script>

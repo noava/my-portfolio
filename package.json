@@ -18,7 +18,7 @@
     "@supabase/supabase-js": "^2.45.2",
     "gsap": "^3.12.5",
     "my-portfolio": ".",
-    "pinia": "^2.2.2",
+    "pinia": "^2.2.4",
     "vue": "^3.4.38",
     "vue-router": "^4.4.3"
   },

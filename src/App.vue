@@ -10,13 +10,25 @@
   <footer>
     <FooterItem />
   </footer>
+
+  <ImageViewer />
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 import NavbarTab from './components/NavbarTab.vue'
 import FooterItem from './components/FooterItem.vue'
 import { gsap } from 'gsap'
+import ImageViewer from './components/ImageViewer.vue'
+import { useImageStore } from '@/stores/images'
 
+const imageStore = useImageStore()
+
+onMounted(() => {
+  imageStore.fetchImages() // Fetch the images from Supabase storage
+})
+
+// Cursor Line
 const isMobile = window.innerWidth <= 768
 
 const pointer = {
