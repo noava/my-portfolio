@@ -155,10 +155,6 @@ main {
   margin: 0 auto;
 }
 
-header {
-  background: $navbarfooter;
-}
-
 .mouse-dot {
   position: fixed;
   top: 0;
@@ -166,6 +162,7 @@ header {
   height: 100%;
   width: 100%;
   pointer-events: none;
+  z-index: 9999;
 
   line {
     stroke-width: 20;

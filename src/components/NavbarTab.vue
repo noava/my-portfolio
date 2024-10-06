@@ -1,24 +1,109 @@
 <template>
-  <nav>
-    <RouterLink class="logo" to="/">Noava</RouterLink>
+  <nav
+    class="fixed top-0 left-0 right-0 w-full max-w-[1600px] h-[80px] flex justify-between items-center p-8 z-50 mx-auto"
+  >
+    <RouterLink
+      to="/"
+      class="text-5xl font-black bg-navbarfooter bg-opacity-50 backdrop-blur rounded-full px-6 py-2 hover:tracking-widest hover:saturate-[300%]"
+      >Noava</RouterLink
+    >
 
-    <div :class="['links', { open: isMenuOpen }]" @click="closeMenu">
-      <RouterLink class="nav-item" to="/projects">Projects</RouterLink>
-      <RouterLink class="nav-item" to="/brandguide">Brand Guide</RouterLink>
-      <RouterLink class="nav-item" to="/nothin">Nothin</RouterLink>
+    <div
+      :class="[
+        isMenuOpen ? 'block' : 'hidden',
+        'absolute top-24 right-3 lg:right-0 bg-navbarfooter bg-opacity-50 backdrop-blur w-[20rem] lg:w-[28rem] p-4 shadow-lg rounded-lg text-right text-3xl lg:text-5xl space-y-2 lg:space-y-4'
+      ]"
+      @click="closeMenu"
+    >
+      <RouterLink
+        class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
+        to="/projects"
+        >Projects
+        <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
+          bento
+        </span></RouterLink
+      >
+      <RouterLink
+        class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
+        to="/brandguide"
+        >Brand Guide
+        <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
+          brand_family
+        </span>
+      </RouterLink>
+      <RouterLink
+        class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
+        to="/contact"
+        >Contact
+        <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
+          deskphone
+        </span></RouterLink
+      >
+      <div>
+        <span class="font-black text-lg lg:text-xl">NORWAY, {{ NORdateHours }}</span>
+        <span
+          :class="['transition-opacity duration-500 ease-in-out', { 'opacity-0': !showColon }]"
+          class="font-black text-2xl px-[0.1rem]"
+          >:</span
+        >
+        <span class="font-black text-lg lg:text-xl">{{ NORdateMins }}</span>
+        <span
+          v-if="weatherIcon"
+          class="material-symbols-outlined text-3xl lg:text-5xl align-middle ps-4 pe-2"
+        >
+          {{ weatherIcon }}
+        </span>
+      </div>
     </div>
-
-    <div class="hamburger" @click="toggleMenu">
-      <span v-if="isMenuOpen" class="material-symbols-outlined"> close </span>
-      <span v-else class="material-symbols-outlined"> menu </span>
+    <div
+      class="cursor-pointer bg-navbarfooter bg-opacity-50 backdrop-blur rounded-full p-2 hover:saturate-[300%]"
+      @click="toggleMenu"
+    >
+      <span v-if="isMenuOpen" class="material-symbols-outlined text-5xl align-middle">close</span>
+      <span v-else class="material-symbols-outlined text-5xl align-middle">menu</span>
     </div>
   </nav>
+  <div class="fixed h-full w-full left-0 top-0" v-if="isMenuOpen" @click="closeMenu"></div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const isMenuOpen = ref(false)
+const NORdateHours = ref('')
+const NORdateMins = ref('')
+const showColon = ref(true)
+let intervalId
+const weatherIcon = ref('')
+
+// MET API to Google Material Icons
+const symbolCodeToIcon = {
+  clearsky: 'wb_sunny',
+  partlycloudy: 'cloud',
+  cloudy: 'filter_drama',
+  rain: 'rainy',
+  lightrain: 'rainy_light',
+  heavyrain: 'rainy_heavy',
+  snow: 'weather_snowy',
+  lightsnow: 'weather_snowy',
+  heavysnow: 'weather_mix',
+  thunderstorm: 'thunderstorm'
+}
+
+onMounted(() => {
+  getNorwegianTime()
+  getWeatherData()
+
+  setInterval(toggleColon, 500)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(intervalId)
+})
+
+const toggleColon = () => {
+  showColon.value = !showColon.value
+}
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
@@ -27,89 +112,65 @@ const toggleMenu = () => {
 const closeMenu = () => {
   isMenuOpen.value = false
 }
+
+const getNorwegianTime = async () => {
+  try {
+    const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Oslo')
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    const datetime = new Date(data.datetime)
+    const NORdate = ref('')
+
+    NORdate.value = datetime.toLocaleTimeString('no-NO', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+
+    const updateClock = () => {
+      datetime.setSeconds(datetime.getSeconds() + 1)
+      NORdate.value = datetime.toLocaleTimeString('no-NO', {
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+
+      // Split into hours and minutes
+      const [hh, mm] = NORdate.value.split(':')
+      NORdateHours.value = hh
+      NORdateMins.value = mm
+    }
+
+    intervalId = setInterval(updateClock, 1000)
+  } catch (error) {
+    console.error('Error fetching Norwegian time:', error)
+  }
+}
+
+const getWeatherData = async () => {
+  try {
+    const response = await fetch(
+      'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=58.34&lon=8.59',
+      {
+        headers: {
+          'User-Agent': 'NoavaPortfolio'
+        }
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+
+    const symbolCode = data.properties.timeseries[0].data.next_1_hours.summary.symbol_code
+
+    weatherIcon.value = symbolCodeToIcon[symbolCode] || 'error'
+  } catch (error) {
+    console.error('Error fetching weather data:', error)
+  }
+}
 </script>
-
-<style lang="scss" scoped>
-@import '../assets/main.scss';
-
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: $headerheight;
-  max-width: 1600px;
-  margin: 0 auto;
-  position: relative;
-  -webkit-tap-highlight-color: transparent;
-
-  .logo {
-    text-decoration: none;
-    color: $text;
-    font-style: italic;
-    font-weight: 800;
-    font-size: 4rem;
-    margin-left: 1em;
-  }
-
-  .links {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-right: 1em;
-
-    .nav-item {
-      color: $text;
-      text-decoration: none;
-      font-size: 1.5rem;
-      margin: 1rem;
-      -webkit-tap-highlight-color: $primary;
-    }
-    &.open {
-      display: block;
-      position: absolute;
-      top: $headerheight;
-      left: 0;
-      width: 100%;
-      text-align: center;
-
-      .nav-item {
-        display: block;
-        margin: 0;
-        padding: 0.5em;
-      }
-    }
-  }
-
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-
-    margin-right: 1em;
-    cursor: pointer;
-
-    span {
-      font-size: 3rem;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  nav {
-    .links {
-      display: none;
-      flex-direction: column;
-      height: 100vh;
-      background: none;
-
-      .nav-item {
-        background: $navbarfooter;
-      }
-    }
-
-    .hamburger {
-      display: flex;
-    }
-  }
-}
-</style>
