@@ -67,13 +67,12 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const isMenuOpen = ref(false)
 const NORdateHours = ref('')
 const NORdateMins = ref('')
 const showColon = ref(true)
-let intervalId
 const weatherIcon = ref('')
 
 // MET API to Google Material Icons
@@ -93,12 +92,9 @@ const symbolCodeToIcon = {
 onMounted(() => {
   getNorwegianTime()
   getWeatherData()
+  setInterval(getNorwegianTime, 1000)
 
   setInterval(toggleColon, 500)
-})
-
-onBeforeUnmount(() => {
-  clearInterval(intervalId)
 })
 
 const toggleColon = () => {
@@ -113,40 +109,19 @@ const closeMenu = () => {
   isMenuOpen.value = false
 }
 
-const getNorwegianTime = async () => {
-  try {
-    const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Oslo')
+const getNorwegianTime = () => {
+  const NORdate = ref('')
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
+  NORdate.value = new Intl.DateTimeFormat('no-NO', {
+    timeZone: 'Europe/Oslo',
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(new Date())
 
-    const data = await response.json()
-    const datetime = new Date(data.datetime)
-    const NORdate = ref('')
-
-    NORdate.value = datetime.toLocaleTimeString('no-NO', {
-      hour: '2-digit',
-      minute: '2-digit'
-    })
-
-    const updateClock = () => {
-      datetime.setSeconds(datetime.getSeconds() + 1)
-      NORdate.value = datetime.toLocaleTimeString('no-NO', {
-        hour: '2-digit',
-        minute: '2-digit'
-      })
-
-      // Split into hours and minutes
-      const [hh, mm] = NORdate.value.split(':')
-      NORdateHours.value = hh
-      NORdateMins.value = mm
-    }
-
-    intervalId = setInterval(updateClock, 1000)
-  } catch (error) {
-    console.error('Error fetching Norwegian time:', error)
-  }
+  // Split into hours and minutes
+  const [hh, mm] = NORdate.value.split(':')
+  NORdateHours.value = hh
+  NORdateMins.value = mm
 }
 
 const getWeatherData = async () => {
