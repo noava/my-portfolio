@@ -1,6 +1,6 @@
 <template>
   <div
-    class="lg:grid lg:grid-cols-4 lg:grid-rows-10 lg:gap-4 m-2 max-lg:space-y-3 lg:mt-[5rem] overflow-hidden"
+    class="lg:grid lg:grid-cols-4 lg:grid-rows-10 lg:gap-4 m-2 max-lg:space-y-3 mt-[5rem] overflow-hidden"
   >
     <div class="col-span-3 row-span-2 lg:h-[16rem]">
       <div
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div
-      class="row-span-2 col-start-1 row-start-8 bg-primary rounded h-48 overflow-hidden relative"
+      class="row-span-2 col-start-1 row-start-8 bg-primary rounded h-48 overflow-hidden relative pointer-events-none"
     >
       <div
         v-for="(noava_line, index) in noava_lines"
@@ -77,7 +77,7 @@
       </span>
     </div>
     <div
-      class="max-lg:hidden row-span-7 col-start-4 row-start-1 bg-secondary rounded flex items-center justify-center"
+      class="max-lg:hidden row-span-7 col-start-4 row-start-1 bg-secondary rounded flex items-center justify-center pointer-events-none"
     >
       <span class="text-[17rem] rotate-90 text-background font-black italic leading-none"
         >NOAVA</span

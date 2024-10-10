@@ -104,8 +104,6 @@ async function getProjects() {
       font.value = data.font
       image_border.value = data.image_border
     }
-
-    console.log(title.value, 'is', id.value % 2 !== 0 ? 'odd' : 'even')
   } catch (error: any) {
     alert(error.message)
   } finally {

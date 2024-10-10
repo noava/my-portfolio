@@ -34,6 +34,9 @@ const router = createRouter({
         behavior: 'smooth'
       }
     }
+    if (to.hash === '#contact' || from.hash === '#contact') {
+      return { savedPosition }
+    }
     if (savedPosition) {
       return savedPosition
     } else {
