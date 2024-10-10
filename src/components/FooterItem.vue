@@ -1,110 +1,58 @@
 <template>
-  <div class="footer">
-    <div class="logo">Noava</div>
-    <div class="burger">
-      <div class="bread-top">
-        <RouterLink class="nav-item" to="/">Contact Me</RouterLink>
+  <div class="footer-container bg-navbarfooter rounded-t-2xl h-full flex flex-col items-center">
+    <div class="max-w-[1600px]">
+      <div
+        class="flex max-lg:flex-col justify-between max-lg:space-y-10 lg:py-20 py-4 px-2 lg:px-8"
+      >
+        <div class="flex flex-row justify-between">
+          <div class="lg:w-60 flex flex-row items-center space-x-2">
+            <img
+              class="size-12 lg:size-16 cursor-pointer"
+              src="https://img.icons8.com/ios-glyphs/e4e2c4/linkedin.png"
+              alt="linkedin"
+              onclick="window.open('https://linkedin.com/in/niklas-vezina', '_blank')"
+              title="https://linkedin.com/in/niklas-vezina"
+            />
+            <img
+              class="size-12 lg:size-16 cursor-pointer"
+              src="https://img.icons8.com/ios-glyphs/e4e2c4/github.png"
+              alt="linkedin"
+              onclick="window.open('https://github.com/noava', '_blank')"
+              title="https://github.com/noava"
+            />
+          </div>
+          <div class="flex justify-center items-center ps-2">
+            <span class="material-symbols-outlined text-3xl lg:text-5xl">arrow_left_alt</span>
+            <span class="text-xl lg:text-3xl ps-2">platforms</span>
+          </div>
+        </div>
+        <div class="flex flex-col justify-center items-center max-lg:order-first max-lg:pb-10">
+          <DynamicButton
+            button_link=""
+            button_text="Reach Out!"
+            button_text_color="#3A3234"
+            button_bg_color=""
+            button_border_color="#475946"
+            @click="router.push({ hash: '#contact' })"
+          />
+          <span class="w-80 text-base pt-6"
+            >Reach out if you are interesting in designing or would like to offer me a job.</span
+          >
+        </div>
       </div>
 
-      <div class="meat">
-        <RouterLink class="nav-item" to="/brandguide">Brand Guide</RouterLink>
-      </div>
-      <div class="bread-bottom">
-        <RouterLink class="nav-item" to="/projects">Projects</RouterLink>
+      <div class="p-2 pt-10">
+        <NoavaHover class="w-full h-[18vw] max-h-[30rem]" />
+        <div class="w-full text-right text-sm py-4">© 2024 Niklas Vezina</div>
       </div>
     </div>
-    <div class="legal">© 2024 Noava</div>
   </div>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { useRouter } from 'vue-router'
+import DynamicButton from './buttons/DynamicButton.vue'
+import NoavaHover from './NoavaHover.vue'
+
+const router = useRouter()
 </script>
-
-<style lang="scss" scoped>
-@import '../assets/main.scss';
-
-.nav-item {
-  color: $text;
-  text-decoration: none;
-  font-size: 1.5rem;
-  border-radius: 10px;
-  -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    filter: saturate(300%);
-    letter-spacing: 0.2rem;
-  }
-}
-
-.footer {
-  background: $navbarfooter;
-  height: $footerheight;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  padding: 1rem;
-
-  .logo {
-    font-style: italic;
-    font-weight: 800;
-    font-size: 3.125vw;
-  }
-
-  .burger {
-    margin: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    .bread-top,
-    .meat,
-    .bread-bottom {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 280px;
-      height: 60px;
-    }
-
-    .bread-top {
-      background: #71553c;
-      border-radius: 50px 50px 0 0;
-    }
-
-    .meat {
-      width: 350px;
-      background: #533224;
-      border-radius: 50px;
-    }
-
-    .bread-bottom {
-      background: #71553c;
-      border-radius: 0 0 50px 50px;
-    }
-  }
-
-  .legal {
-    font-size: 1vw;
-    color: $text;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: auto;
-
-    .logo {
-      font-size: 8vw;
-    }
-
-    .legal {
-      font-size: 3vw;
-    }
-  }
-}
-</style>

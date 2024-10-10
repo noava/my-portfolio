@@ -15,17 +15,34 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, nextTick } from 'vue'
 import NavbarTab from './components/NavbarTab.vue'
 import FooterItem from './components/FooterItem.vue'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageViewer from './components/ImageViewer.vue'
 import { useImageStore } from '@/stores/images'
 
 const imageStore = useImageStore()
+gsap.registerPlugin(ScrollTrigger)
 
-onMounted(() => {
+onMounted(async () => {
   imageStore.fetchImages() // Fetch the images from Supabase storage
+  await nextTick() // Ensure the DOM is fully rendered
+
+  gsap.set('.footer-container', { y: '50vh' })
+
+  const uncover = gsap.timeline({ paused: true })
+
+  uncover.to('.footer-container', { y: 0, ease: 'none' })
+
+  ScrollTrigger.create({
+    trigger: 'main',
+    start: 'bottom bottom',
+    end: '+=75%',
+    animation: uncover,
+    scrub: true
+  })
 })
 
 // Cursor Line
@@ -149,8 +166,6 @@ const createSpark = (center, angle) => {
 @import './assets/main.scss';
 
 main {
-  display: flex;
-  flex-direction: column;
   max-width: 1600px;
   margin: 0 auto;
 }
