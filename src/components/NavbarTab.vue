@@ -33,7 +33,7 @@
       </RouterLink>
       <RouterLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
-        to="/contact"
+        to="#contact"
         >Contact
         <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
           deskphone
@@ -63,7 +63,7 @@
       <span v-else class="material-symbols-outlined text-5xl align-middle">menu</span>
     </div>
   </nav>
-  <div class="fixed h-full w-full left-0 top-0" v-if="isMenuOpen" @click="closeMenu"></div>
+  <div class="fixed inset-0 z-40" v-if="isMenuOpen" @click="closeMenu"></div>
 </template>
 
 <script setup>

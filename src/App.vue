@@ -12,6 +12,7 @@
   </footer>
 
   <ImageViewer />
+  <ContactForm />
 </template>
 
 <script setup>
@@ -22,6 +23,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageViewer from './components/ImageViewer.vue'
 import { useImageStore } from '@/stores/images'
+import ContactForm from './components/ContactForm.vue'
 
 const imageStore = useImageStore()
 gsap.registerPlugin(ScrollTrigger)
