@@ -26,7 +26,7 @@
       v-if="image_url"
       :src="image_url"
       :alt="'Image of ' + title"
-      class="rounded-2xl my-auto ml-4 max-sm:w-[90%] w-full lg:max-w-[50%] lg:order-first cursor-pointer"
+      class="rounded-2xl my-auto ml-4 max-lg:w-[90%] w-full lg:max-w-[50%] lg:order-first cursor-pointer"
       :style="{ border: `${image_border} solid 10px` }"
       @click="openImage(image_url)"
     />

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import BrandGuide from '@/views/BrandGuideCreator.vue'
+// import BrandGuide from '@/views/BrandGuideCreator.vue'
 import ErrorView from '@/views/ErrorView.vue'
 
 const router = createRouter({
@@ -16,11 +16,11 @@ const router = createRouter({
       name: 'projects',
       component: HomeView
     },
-    {
+    /*{
       path: '/brandguide',
       name: 'brandguide',
       component: BrandGuide
-    },
+    },*/
     {
       path: '/:catchAll(.*)',
       name: 'errorview',
