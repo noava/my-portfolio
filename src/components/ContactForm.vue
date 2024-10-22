@@ -63,7 +63,7 @@
         <label
           class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
           :class="{
-            'text-red-500': !form.who && hasSubmitted
+            'text-red-700': !form.who && hasSubmitted
           }"
           >Who?</label
         >
@@ -108,7 +108,7 @@
         <label
           class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
           :class="{
-            'text-red-500': !form.what && hasSubmitted
+            'text-red-700': !form.what && hasSubmitted
           }"
           >What?</label
         >
@@ -129,7 +129,7 @@
         <label
           class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
           :class="{
-            'text-red-500': !form.why && hasSubmitted
+            'text-red-700': !form.why && hasSubmitted
           }"
           >Why?</label
         >
@@ -146,7 +146,7 @@
           <span v-if="textareaRows !== 8"
             >This expands to more rows. Rows shown: {{ textareaRows }}</span
           >
-          <span v-if="textareaRows === 8" class="text-red-500"
+          <span v-if="textareaRows === 8" class="text-red-700"
             >MAX<span class="text-light"> Rows, but theres a scrollbar</span>
           </span>
         </label>
@@ -194,7 +194,7 @@
         <label
           class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
           :class="{
-            'text-red-500': !form.name && hasSubmitted
+            'text-red-700': !form.name && hasSubmitted
           }"
           >Name</label
         >
@@ -210,12 +210,12 @@
         <label
           class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
           :class="{
-            'text-red-500': (!form.email || !isEmailValid) && hasSubmitted
+            'text-red-700': (!form.email || !isEmailValid) && hasSubmitted
           }"
           >Email</label
         >
         <input
-          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow group-email invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow group-email invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
           type="email"
           v-model="form.email"
           placeholder="Email"

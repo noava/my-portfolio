@@ -195,5 +195,6 @@ main {
   background: theme('colors.accent');
   backdrop-filter: invert(1);
   pointer-events: none;
+  z-index: 9999;
 }
 </style>

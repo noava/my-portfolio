@@ -23,14 +23,14 @@
           bento
         </span></RouterLink
       >
-      <RouterLink
+      <!--<RouterLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         to="/brandguide"
         >Brand Guide
         <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
           brand_family
         </span>
-      </RouterLink>
+      </RouterLink>-->
       <RouterLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         to="#contact"
@@ -79,6 +79,8 @@ const weatherIcon = ref('')
 const symbolCodeToIcon = {
   clearsky: 'wb_sunny',
   partlycloudy: 'cloud',
+  partlycloudy_day: 'partly_cloudy_day',
+  partlycloudy_night: 'partly_cloudy_night',
   cloudy: 'filter_drama',
   rain: 'rainy',
   lightrain: 'rainy_light',
@@ -86,7 +88,9 @@ const symbolCodeToIcon = {
   snow: 'weather_snowy',
   lightsnow: 'weather_snowy',
   heavysnow: 'weather_mix',
-  thunderstorm: 'thunderstorm'
+  thunderstorm: 'thunderstorm',
+  fair_night: 'bedtime',
+  fair_day: 'wb_sunny'
 }
 
 onMounted(() => {
