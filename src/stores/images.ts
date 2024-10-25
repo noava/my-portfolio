@@ -5,7 +5,7 @@ import { supabase } from '@/supabase'
 export const useImageStore = defineStore('images', () => {
   const images = ref<string[]>([])
   const selectedImage = ref<string | null>(null)
-  const imageCache = ref<{ [key: string]: HTMLImageElement }>({}) // Cache for loaded images
+  const imageCache = ref<{ [key: string]: string }>({})
 
   // Fetch images from Supabase
   const fetchImages = async () => {
@@ -19,17 +19,19 @@ export const useImageStore = defineStore('images', () => {
       return []
     }
 
-    images.value = data.map((file) => file.image_url)
-
-    // Store images in cache
-    images.value.forEach((url) => {
-      const img = new Image()
-      img.src = url
-      imageCache.value[url] = img
-    })
+    images.value = data.map((file) => file.image_url).filter((url) => !imageCache.value[url])
   }
 
+  fetchImages()
+
   const selectImage = (url: string) => {
+    // Add image URL to the images array if not exsisting
+    if (!images.value.includes(url)) {
+      images.value.push(url)
+    }
+
+    imageCache.value[url] = url
+
     selectedImage.value = url
   }
 
@@ -40,22 +42,29 @@ export const useImageStore = defineStore('images', () => {
   const nextImage = () => {
     if (selectedImage.value) {
       const currentIndex = images.value.indexOf(selectedImage.value)
-      selectedImage.value = images.value[(currentIndex + 1) % images.value.length]
+      const nextImageUrl = images.value[(currentIndex + 1) % images.value.length]
+
+      imageCache.value[nextImageUrl] = nextImageUrl
+
+      selectedImage.value = nextImageUrl
     }
   }
 
   const previousImage = () => {
     if (selectedImage.value) {
       const currentIndex = images.value.indexOf(selectedImage.value)
-      selectedImage.value =
+      const prevImageUrl =
         images.value[(currentIndex - 1 + images.value.length) % images.value.length]
+
+      imageCache.value[prevImageUrl] = prevImageUrl
+
+      selectedImage.value = prevImageUrl
     }
   }
 
   return {
     images,
     selectedImage,
-    fetchImages,
     selectImage,
     clearSelectedImage,
     nextImage,

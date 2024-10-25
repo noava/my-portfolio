@@ -1,5 +1,7 @@
 <template>
-  <div class="lg:flex lg:justify-between lg:items-start my-16">
+  <div v-if="isLoading" class="flex justify-center items-center h-52">Loading...</div>
+
+  <div v-if="!isLoading" class="lg:flex lg:justify-between lg:items-start my-16">
     <div class="lg:mt-20 lg:ml-40 mx-4">
       <h1 class="text-[14vw]/[15vw] lg:text-8xl" :style="{ color: title_color }">{{ title }}</h1>
       <h2 class="text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
@@ -28,7 +30,7 @@
       :alt="'Image of ' + title"
       class="rounded-2xl my-auto ml-4 max-lg:w-[90%] w-full lg:max-w-[50%] lg:order-first cursor-pointer"
       :style="{ border: `${image_border} solid 10px` }"
-      @click="openImage(image_url)"
+      @click="imageStore.selectImage(image_url)"
     />
   </div>
 </template>
@@ -42,7 +44,7 @@ const imageStore = useImageStore()
 const props = defineProps<{ id: number }>()
 const { id } = toRefs(props)
 
-const loading = ref(true)
+const isLoading = ref(true)
 
 const title = ref('')
 const undertitle = ref('')
@@ -61,7 +63,7 @@ onMounted(() => {
 
 async function getProjects() {
   try {
-    loading.value = true
+    isLoading.value = true
 
     let { data, error, status }: { data: any; error: any; status: any } = await supabase
       .from('projects')
@@ -88,11 +90,7 @@ async function getProjects() {
   } catch (error: any) {
     alert(error.message)
   } finally {
-    loading.value = false
+    isLoading.value = false
   }
-}
-
-const openImage = (url: string) => {
-  imageStore.selectImage(url)
 }
 </script>

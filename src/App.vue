@@ -22,7 +22,6 @@ import FooterItem from './components/FooterItem.vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ImageViewer from './components/ImageViewer.vue'
-import { useImageStore } from '@/stores/images'
 import ContactForm from './components/ContactForm.vue'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import tailwindConfig from '../tailwind.config'
@@ -32,11 +31,9 @@ const tailwind = resolveConfig(tailwindConfig)
 const topLineColor = tailwind.theme.colors.primary
 const underLineColor = tailwind.theme.colors.accent
 
-const imageStore = useImageStore()
 gsap.registerPlugin(ScrollTrigger)
 
 onMounted(async () => {
-  imageStore.fetchImages() // Fetch the images from Supabase storage
   await nextTick() // Ensure the DOM is fully rendered
 
   gsap.set('.footer-container', { y: '50vh' })

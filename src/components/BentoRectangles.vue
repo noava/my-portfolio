@@ -39,8 +39,8 @@
           title="Double click to open fullscreen image"
           @click="drawCard(index)"
           @dblclick="
-            openImage(
-              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/3-cards.png'
+            imageStore.selectImage(
+              'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Song-cards/3-cards.webp'
             )
           "
         />
@@ -64,7 +64,7 @@
       <div
         class="size-full bg-fixed bg-cover bg-center rounded lg:hover:scale-100"
         style="
-          background-image: url(https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/tutrle.jpg);
+          background-image: url(https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/tutrle.webp);
         "
       ></div>
     </div>
@@ -92,7 +92,7 @@
           src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
           alt="Poster I've designed"
           @click="
-            openImage(
+            imageStore.selectImage(
               'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'
             )
           "
@@ -129,9 +129,5 @@ const images = ref([
 const drawCard = (index: number) => {
   const selectedImage = images.value.splice(index, 1)[0]
   images.value.push(selectedImage)
-}
-
-const openImage = (url: string) => {
-  imageStore.selectImage(url)
 }
 </script>
