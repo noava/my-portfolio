@@ -78,6 +78,8 @@ const weatherIcon = ref('')
 // MET API to Google Material Icons
 const symbolCodeToIcon = {
   clearsky: 'wb_sunny',
+  clearsky_day: 'wb_sunny',
+  clearsky_night: 'bedtime',
   partlycloudy: 'cloud',
   partlycloudy_day: 'partly_cloudy_day',
   partlycloudy_night: 'partly_cloudy_night',

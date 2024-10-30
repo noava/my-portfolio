@@ -8,14 +8,14 @@
           <div class="lg:w-60 flex flex-row items-center space-x-2">
             <img
               class="size-12 lg:size-16 cursor-pointer"
-              src="https://img.icons8.com/ios-glyphs/e4e2c4/linkedin.png"
+              :src="`https://img.icons8.com/ios-glyphs/${platformsColor}/linkedin.png`"
               alt="linkedin"
               onclick="window.open('https://linkedin.com/in/niklas-vezina', '_blank')"
               title="https://linkedin.com/in/niklas-vezina"
             />
             <img
               class="size-12 lg:size-16 cursor-pointer"
-              src="https://img.icons8.com/ios-glyphs/e4e2c4/github.png"
+              :src="`https://img.icons8.com/ios-glyphs/${platformsColor}/github.png`"
               alt="linkedin"
               onclick="window.open('https://github.com/noava', '_blank')"
               title="https://github.com/noava"
@@ -30,9 +30,9 @@
           <DynamicButton
             button_link=""
             button_text="Reach Out!"
-            button_text_color="#3A3234"
+            :button_text_color="buttonTextColor"
             button_bg_color=""
-            button_border_color="#475946"
+            :button_border_color="buttonBorderColor"
             @click="router.push({ hash: '#contact' })"
           />
           <span class="w-80 text-base pt-6"
@@ -49,10 +49,16 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRouter } from 'vue-router'
 import DynamicButton from './buttons/DynamicButton.vue'
 import NoavaHover from './NoavaHover.vue'
-
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config'
 const router = useRouter()
+const tailwind = resolveConfig(tailwindConfig)
+
+const platformsColor = tailwind.theme.colors.light.replace('#', '')
+const buttonTextColor = (tailwind.theme.colors.background.DEFAULT as string) || ''
+const buttonBorderColor = (tailwind.theme.colors.secondary as string) || ''
 </script>

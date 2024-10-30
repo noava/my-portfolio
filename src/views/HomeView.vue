@@ -69,6 +69,6 @@ const getComponentById = (id: number) => {
 hr {
   margin: 0;
   border: none;
-  border-top: 10px dashed $primary;
+  border-top: 10px dashed theme('colors.primary');
 }
 </style>

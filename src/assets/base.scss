@@ -1,11 +1,9 @@
-$text: #e4e2c4;
-$background: #2f282e;
-$card: #3a3234;
-$primary: #faf3a3;
-$secondary: #475946;
-$accent: #819c87;
-$navbarfooter: #352a34;
+// Remove these after remaking the buttons
+$background: theme('colors.background.DEFAULT');
+$primary: theme('colors.primary');
+$secondary: theme('colors.secondary');
 
+// Convert to tailwind. Fix error view page
 $headerheight: 80px;
 $footerheight: 250px;
 
@@ -30,8 +28,8 @@ nav {
 
 body {
   min-height: 100vh;
-  color: $text;
-  background: $background;
+  color: theme('colors.light');
+  background: theme('colors.background.DEFAULT');
   line-height: 1.6;
   font-family: 'Saira', sans-serif;
   font-size: 16px;

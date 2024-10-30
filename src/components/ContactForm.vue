@@ -30,9 +30,9 @@
       <DynamicButton
         button_link=""
         button_text="Continue"
-        button_text_color="#3A3234"
+        :button_text_color="buttonTextColor"
         button_bg_color=""
-        button_border_color="#475946"
+        :button_border_color="buttonBorderColor"
         @click="handleFirstForm"
         class="w-full lg:w-1/2 mt-auto ms-auto"
       />
@@ -43,7 +43,7 @@
   <div
     v-if="isSecondModalOpen"
     class="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur p-6"
-    @click.self="toggleSecondModal"
+    @click.self="closeSecondModal"
   >
     <form
       id="inquiries"
@@ -53,7 +53,7 @@
     >
       <span
         class="material-symbols-outlined absolute top-[-10px] right-[-10px] bg-background text-light border-2 cursor-pointer border-light rounded-full p-2"
-        @click="toggleSecondModal"
+        @click="closeSecondModal"
       >
         close
       </span>
@@ -112,18 +112,26 @@
           }"
           >What?</label
         >
-        <select
-          class="max-w-full lg:w-1/3 bg-background placeholder:text-xxx text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
-          v-model="form.what"
-          required
-        >
-          <option class="hover:bg-background" value="" disabled>What are you interested in?</option>
-          <option class="hover:bg-background select:bg-background" value="job_offer">
-            Job offer
-          </option>
-          <option value="ui_ux">UI / UX</option>
-          <option value="posters">Posters</option>
-        </select>
+        <div class="relative">
+          <div
+            class="max-w-full lg:w-1/3 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 cursor-pointer"
+            @click="toggleDropdown"
+          >
+            {{ selectedOption || 'What are you interested in?' }}
+          </div>
+          <div v-if="isDropdownOpen" class="absolute z-10 mt-1 bg-background rounded-md shadow-lg">
+            <ul class="max-w-full rounded-md">
+              <li
+                v-for="option in options"
+                :key="option.value"
+                class="hover:bg-primary hover:rounded-md text-light hover:text-background px-4 py-2 cursor-pointer mx-4 border-y-2 last:border-b-0 first:border-t-0 border-background-850"
+                @click="selectOption(option)"
+              >
+                {{ option.text }}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
       <div class="flex flex-col">
         <label
@@ -134,7 +142,7 @@
           >Why?</label
         >
         <textarea
-          class="w-full bg-background placeholder:text-xxx text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow whitespace-pre-line resize-none"
+          class="w-full bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow whitespace-pre-line resize-none"
           type="text"
           :rows="textareaRows"
           v-model="form.why"
@@ -155,9 +163,9 @@
       <DynamicButton
         button_link=""
         button_text="Next Step"
-        button_text_color="#3A3234"
+        :button_text_color="buttonTextColor"
         button_bg_color=""
-        button_border_color="#475946"
+        :button_border_color="buttonBorderColor"
         class="w-full lg:w-1/2 mt-auto ms-auto"
         type="submit"
         value="submit"
@@ -184,7 +192,7 @@
       </span>
       <span
         class="material-symbols-outlined absolute top-[-20px] left-[-20px] bg-background text-light border-2 cursor-pointer border-light rounded-full p-2"
-        @click="toggleSecondModal"
+        @click="goBackToSecondModal"
       >
         reply
       </span>
@@ -199,7 +207,7 @@
           >Name</label
         >
         <input
-          class="w-1/2 bg-background placeholder:text-xxx text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
+          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
           type="text"
           v-model="form.name"
           placeholder="Name"
@@ -228,9 +236,9 @@
       <DynamicButton
         button_link=""
         button_text="Send Info"
-        button_text_color="#3A3234"
+        :button_text_color="buttonTextColor"
         button_bg_color=""
-        button_border_color="#475946"
+        :button_border_color="buttonBorderColor"
         class="w-full lg:w-1/2 mt-auto ms-auto"
         type="submit"
         value="submit"
@@ -240,10 +248,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import DynamicButton from './buttons/DynamicButton.vue'
 import { supabase } from '../supabase'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../../tailwind.config'
 
 const route = useRoute()
 const router = useRouter()
@@ -253,6 +263,18 @@ const isSecondModalOpen = ref(false)
 const isThirdModalOpen = ref(false)
 const hasSubmitted = ref(false)
 const textareaRows = ref(5)
+const tailwind = resolveConfig(tailwindConfig)
+
+const buttonTextColor = (tailwind.theme.colors.backround as string) || ''
+const buttonBorderColor = (tailwind.theme.colors.secondary as string) || ''
+
+const isDropdownOpen = ref(false)
+const selectedOption = ref('')
+const options = ref([
+  { value: 'job_offer', text: 'Job offer' },
+  { value: 'ui_ux', text: 'UI / UX' },
+  { value: 'posters', text: 'Posters' }
+])
 
 const form = ref({
   who: '',
@@ -263,18 +285,18 @@ const form = ref({
 })
 
 const checkHashAndOpenModal = () => {
-  if (route.hash === '#contact') {
+  if (route.hash === '#contact' && !isFirstModalOpen.value) {
     isFirstModalOpen.value = true
+  } else if (route.hash !== '#contact' && isFirstModalOpen.value) {
+    isFirstModalOpen.value = false
+    isSecondModalOpen.value = false
+    isThirdModalOpen.value = false
   }
 }
 
 const removeHash = () => {
   router.replace({ path: router.currentRoute.value.path })
 }
-
-onMounted(() => {
-  checkHashAndOpenModal()
-})
 
 watch(
   () => route.hash,
@@ -288,10 +310,14 @@ const closeFirstModal = () => {
   removeHash()
 }
 
-const toggleSecondModal = () => {
-  isSecondModalOpen.value = !isSecondModalOpen.value
-  isThirdModalOpen.value = false
+const closeSecondModal = () => {
+  isSecondModalOpen.value = false
   removeHash()
+}
+
+const goBackToSecondModal = () => {
+  isSecondModalOpen.value = true
+  isThirdModalOpen.value = false
 }
 
 const closeThirdModal = () => {
@@ -340,7 +366,7 @@ const handleThirdForm = async () => {
   }
 
   isThirdModalOpen.value = false
-
+  removeHash()
   hasSubmitted.value = false
 }
 
@@ -352,5 +378,15 @@ const isEmailValid = computed(() => {
 const autoExpandRows = () => {
   const lineBreaks = (form.value.why.match(/\n/g) || []).length
   textareaRows.value = Math.min(Math.max(5, lineBreaks + 1), 8)
+}
+
+const toggleDropdown = () => {
+  isDropdownOpen.value = !isDropdownOpen.value
+}
+
+const selectOption = (option: { value: string; text: string }) => {
+  selectedOption.value = option.text
+  isDropdownOpen.value = false
+  form.value.what = option.value
 }
 </script>
