@@ -92,7 +92,8 @@ const symbolCodeToIcon = {
   heavysnow: 'weather_mix',
   thunderstorm: 'thunderstorm',
   fair_night: 'bedtime',
-  fair_day: 'wb_sunny'
+  fair_day: 'wb_sunny',
+  fog: 'foggy'
 }
 
 onMounted(() => {

@@ -201,4 +201,8 @@ main {
   pointer-events: none;
   z-index: 9999;
 }
+
+::selection {
+  background: theme('colors.accent');
+}
 </style>
