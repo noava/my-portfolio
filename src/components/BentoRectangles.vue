@@ -4,28 +4,31 @@
   >
     <div class="col-span-3 row-span-2 lg:h-[16rem]">
       <div
-        class="max-lg: mt-12 lg:mt-24 xl:mt-12 ml-[16vw] lg:ml-32 xl:ml-44 2xl:ml-40 text-[15vw] lg:text-[9rem] xl:text-[11rem] 2xl:text-[12rem]"
+        class="max-lg:hidden mt-24 xl:mt-12 ml-32 xl:ml-44 2xl:ml-40 text-[9rem] xl:text-[11rem] 2xl:text-[12rem]"
       >
         <h1 class="mt-0 leading-[0.5]">Niklas</h1>
         <h1 class="ml-[15vw] 2xl:ml-72">Vezina</h1>
       </div>
     </div>
-    <div class="row-span-5 col-start-1 row-start-3 bg-secondary rounded">
-      <!-- 2 -->
-    </div>
-    <div class="row-span-3 col-start-3 row-start-4 bg-primary rounded p-2">
-      <img class="h-20 m-auto my-8 fill-orange-500" src="../assets/svg/N-wiff-stars.svg" />
-      <p class="text-background font-medium text-lg lg:text-xl leading-relaxed p-4 pt-0">
+    <div
+      class="row-span-3 col-start-3 row-start-4 bg-primary rounded p-2 flex flex-col justify-between"
+    >
+      <img
+        class="max-lg:hidden h-20 m-auto my-8 fill-orange-500"
+        src="../assets/svg/N-wiff-stars.svg"
+      />
+      <p class="text-background font-medium text-lg lg:text-xl leading-relaxed m-4 pt-0">
         <b class="text-2xl">Hei!</b> :&#41; <br />
-        My name is <b>Niklas</b>, and I have a passion for both graphic design and web design. I
-        love creating visually appealing designs that are also functional, combining creativity with
-        problem-solving to bring ideas to life on both digital and print platforms.
+        My name is <b>Niklas Vezina</b>, and I have a bachelor degree in computer engineering. My
+        love for graphic and web design has led me to create designs that are also functional on
+        both digital and print platforms.
       </p>
     </div>
     <div class="row-span-3 col-start-3 row-start-7 bg-secondary rounded p-6 flex flex-col">
       <p class="text-light font-medium text-lg lg:text-xl leading-relaxed">
         <b>I enjoy designing.</b>
-        Whether it's developing a user interface or combining elements to create a poster.
+        Whether it's developing a user interface or combining elements to create a poster or these
+        cards:
       </p>
       <div class="grid place-items-center h-[16rem] relative">
         <img
@@ -58,6 +61,19 @@
         NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA-NOAVA
       </div>
     </div>
+    <div
+      class="row-span-4 col-start-1 row-start-3 bg-secondary rounded p-2 flex justify-center items-center"
+    >
+      <img
+        class="w-full object-cover rounded"
+        src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp"
+        @click="
+          imageStore.selectImage(
+            'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/BentoRectangles/pusekatter.webp'
+          )
+        "
+      />
+    </div>
     <div class="max-lg:hidden col-span-2 col-start-2 row-start-3"><!-- empty long --></div>
     <div class="max-lg:hidden col-start-2 row-start-4"><!-- empty short --></div>
     <div class="row-span-6 col-start-2 row-start-5 bg-primary rounded p-2 h-[32rem] lg:h-[56rem]">
@@ -69,11 +85,11 @@
       ></div>
     </div>
 
-    <div class="col-start-3 row-start-10 p-4">
+    <div class="col-start-1 row-start-7 p-4">
       <span class="text-xl leading-relaxed"
         >This <b>website</b> is made using vue, gsap, typescript, supabase, pinia and tailwindcss.
         Check out the repo
-        <a class="text-accent text-bold" href="https://github.com/noava/my-portfolio">here</a>.
+        <a class="text-accent font-bold" href="https://github.com/noava/my-portfolio">here</a>.
       </span>
     </div>
     <div
@@ -85,12 +101,14 @@
     </div>
     <div class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[24rem]">
       <div
-        class="flex items-center justify-center size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
+        class="flex items-center justify-center relative size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
       >
+        <div class="absolute h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"></div>
+        <div class="absolute h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"></div>
         <img
-          class="h-[20rem] p-2 lg:hover:scale-110 cursor-pointer"
+          class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg]"
           src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
-          alt="Poster I've designed"
+          alt="Poster of Cowboy Bebop I've designed"
           @click="
             imageStore.selectImage(
               'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'

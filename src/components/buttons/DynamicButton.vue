@@ -1,5 +1,7 @@
 <template>
-  <button @click="openLink" class="funky-button" :style="buttonStyles">{{ button_text }}</button>
+  <button @click="openLink" class="funky-button" :style="buttonStyles" :title="button_link">
+    {{ button_text }}
+  </button>
 </template>
 
 <script setup lang="ts">

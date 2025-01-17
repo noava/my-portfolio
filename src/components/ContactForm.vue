@@ -22,10 +22,9 @@
         </h2>
         <h1 class="text-xl lg:text-3xl font-bold text-center">I'd love to hear from you!</h1>
       </div>
-      <span class="text-xl block py-20"
+      <span class="text-xl block py-10 lg:py-20"
         >You could press <b>continue</b> and navigate throught the form or you can reach me through
-        this email: <a class="text-accent">noavadev@gmail.com</a>
-        <!-- TODO: make email copyable -->
+        this email: <a class="text-accent" href="mailto:noavadev@gmail">noavadev@gmail.com</a>
       </span>
       <DynamicButton
         button_link=""
@@ -73,7 +72,7 @@
               <input
                 v-model="form.who"
                 type="radio"
-                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-850 hover:border-light transition-all"
+                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-darker hover:border-light transition-all"
                 id="company"
                 value="company"
                 required
@@ -90,7 +89,7 @@
               <input
                 v-model="form.who"
                 type="radio"
-                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-850 hover:border-light transition-all"
+                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-darker hover:border-light transition-all"
                 id="private"
                 value="private"
                 required
@@ -114,7 +113,7 @@
         >
         <div class="relative">
           <div
-            class="max-w-full lg:w-1/3 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 cursor-pointer"
+            class="max-w-full lg:w-1/3 bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 cursor-pointer"
             @click="toggleDropdown"
           >
             {{ selectedOption || 'What are you interested in?' }}
@@ -124,7 +123,7 @@
               <li
                 v-for="option in options"
                 :key="option.value"
-                class="hover:bg-primary hover:rounded-md text-light hover:text-background px-4 py-2 cursor-pointer mx-4 border-y-2 last:border-b-0 first:border-t-0 border-background-850"
+                class="hover:bg-primary hover:rounded-md text-light hover:text-background px-4 py-2 cursor-pointer mx-4 border-y-2 last:border-b-0 first:border-t-0 border-background-darker"
                 @click="selectOption(option)"
               >
                 {{ option.text }}
@@ -142,7 +141,7 @@
           >Why?</label
         >
         <textarea
-          class="w-full bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow whitespace-pre-line resize-none"
+          class="w-full bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow whitespace-pre-line resize-none"
           type="text"
           :rows="textareaRows"
           v-model="form.why"
@@ -180,7 +179,7 @@
     @click.self="closeThirdModal"
   >
     <form
-      class="relative w-full lg:w-[50rem] lg:h-[40rem] max-h-[90%] bg-card p-10 flex flex-col rounded-lg gap-4"
+      class="relative w-full lg:w-[50rem] lg:h-[40rem] max-h-[90%] bg-card p-10 flex flex-col justify-center items-center rounded-lg gap-4"
       @submit.prevent="handleThirdForm"
       novalidate
     >
@@ -198,39 +197,42 @@
       </span>
       <h2 class="text-2xl lg:text-4xl font-bold text-center mb-4">Enter Contact Details</h2>
 
-      <div class="flex flex-col">
-        <label
-          class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
-          :class="{
-            'text-red-700': !form.name && hasSubmitted
-          }"
-          >Name</label
-        >
-        <input
-          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
-          type="text"
-          v-model="form.name"
-          placeholder="Name"
-          required
-        />
-      </div>
-      <div class="flex flex-col">
-        <label
-          class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
-          :class="{
-            'text-red-700': (!form.email || !isEmailValid) && hasSubmitted
-          }"
-          >Email</label
-        >
-        <input
-          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow group-email invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
-          type="email"
-          v-model="form.email"
-          placeholder="Email"
-          pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
-          size="30"
-          required
-        />
+      <div class="flex flex-col justify-center items-center my-auto">
+        <div class="flex flex-col pb-6">
+          <label
+            class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
+            :class="{
+              'text-red-700': !form.name && hasSubmitted
+            }"
+            >Name</label
+          >
+          <input
+            class="w-full bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
+            type="text"
+            v-model="form.name"
+            placeholder="Name"
+            size="30"
+            required
+          />
+        </div>
+        <div class="flex flex-col pb-6">
+          <label
+            class="text-md lg:text-xl font-bold italic mb-1 transition duration-300 ease"
+            :class="{
+              'text-red-700': (!form.email || !isEmailValid) && hasSubmitted
+            }"
+            >Email</label
+          >
+          <input
+            class="w-full bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow group-email invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
+            type="email"
+            v-model="form.email"
+            placeholder="Email"
+            pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
+            size="30"
+            required
+          />
+        </div>
       </div>
 
       <DynamicButton

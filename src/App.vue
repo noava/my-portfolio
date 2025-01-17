@@ -169,8 +169,6 @@ const createSpark = (center, angle) => {
 </script>
 
 <style lang="scss">
-@import './assets/main.scss';
-
 main {
   max-width: 1600px;
   margin: 0 auto;
@@ -200,5 +198,9 @@ main {
   backdrop-filter: invert(1);
   pointer-events: none;
   z-index: 9999;
+}
+
+::selection {
+  background: theme('colors.accent');
 }
 </style>

@@ -5,13 +5,14 @@
     v-if="!isLoading"
     :class="id % 2 === 0 ? 'lg:flex-row-reverse' : 'lg:flex-row'"
     class="lg:flex lg:justify-between lg:items-start my-16"
+    :style="{ color: title_color }"
   >
     <div
       :class="id % 2 === 0 ? 'lg:ml-40 lg:text-left' : 'lg:mr-40 lg:text-right'"
       class="lg:mt-20 mx-4"
     >
       <h1 class="text-[15vw]/[15vw] lg:text-8xl" :style="{ color: title_color }">{{ title }}</h1>
-      <h2 class="text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
+      <h2 class="text-2xl lg:text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
       <p
         class="text-2xl my-6 lg:my-12 lg:leading-relaxed"
         v-html="description"

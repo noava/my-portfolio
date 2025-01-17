@@ -4,7 +4,7 @@
   <div v-if="!isLoading" class="lg:flex lg:justify-between lg:items-start my-16">
     <div class="lg:mt-20 lg:ml-40 mx-4">
       <h1 class="text-[14vw]/[15vw] lg:text-8xl" :style="{ color: title_color }">{{ title }}</h1>
-      <h2 class="text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
+      <h2 class="text-2xl lg:text-3xl" :style="{ color: undertitle_color }">{{ undertitle }}</h2>
       <img
         src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/CrewBadge/Barcode.svg?t=2024-07-02T00%3A23%3A52.779Z"
         alt="SVG of barcode"
