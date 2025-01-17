@@ -27,7 +27,8 @@
     <div class="row-span-3 col-start-3 row-start-7 bg-secondary rounded p-6 flex flex-col">
       <p class="text-light font-medium text-lg lg:text-xl leading-relaxed">
         <b>I enjoy designing.</b>
-        Whether it's developing a user interface or combining elements to create a poster.
+        Whether it's developing a user interface or combining elements to create a poster or these
+        cards:
       </p>
       <div class="grid place-items-center h-[16rem] relative">
         <img
@@ -88,7 +89,7 @@
       <span class="text-xl leading-relaxed"
         >This <b>website</b> is made using vue, gsap, typescript, supabase, pinia and tailwindcss.
         Check out the repo
-        <a class="text-accent text-bold" href="https://github.com/noava/my-portfolio">here</a>.
+        <a class="text-accent font-bold" href="https://github.com/noava/my-portfolio">here</a>.
       </span>
     </div>
     <div
@@ -100,12 +101,14 @@
     </div>
     <div class="row-span-3 col-start-4 row-start-8 p-2 bg-primary rounded h-[24rem]">
       <div
-        class="flex items-center justify-center size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
+        class="flex items-center justify-center relative size-full bg-fixed bg-center rounded bg-gradient-to-br from-cyan-500 to-orange-300"
       >
+        <div class="absolute h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"></div>
+        <div class="absolute h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"></div>
         <img
-          class="h-[20rem] p-2 lg:hover:scale-110 cursor-pointer"
+          class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg]"
           src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
-          alt="Poster I've designed"
+          alt="Poster of Cowboy Bebop I've designed"
           @click="
             imageStore.selectImage(
               'https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp'
