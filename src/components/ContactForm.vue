@@ -73,7 +73,7 @@
               <input
                 v-model="form.who"
                 type="radio"
-                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-850 hover:border-light transition-all"
+                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-darker hover:border-light transition-all"
                 id="company"
                 value="company"
                 required
@@ -90,7 +90,7 @@
               <input
                 v-model="form.who"
                 type="radio"
-                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-850 hover:border-light transition-all"
+                class="bg-background peer size-5 cursor-pointer appearance-none rounded-full border-2 border-background-darker hover:border-light transition-all"
                 id="private"
                 value="private"
                 required
@@ -114,7 +114,7 @@
         >
         <div class="relative">
           <div
-            class="max-w-full lg:w-1/3 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 cursor-pointer"
+            class="max-w-full lg:w-1/3 bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 cursor-pointer"
             @click="toggleDropdown"
           >
             {{ selectedOption || 'What are you interested in?' }}
@@ -124,7 +124,7 @@
               <li
                 v-for="option in options"
                 :key="option.value"
-                class="hover:bg-primary hover:rounded-md text-light hover:text-background px-4 py-2 cursor-pointer mx-4 border-y-2 last:border-b-0 first:border-t-0 border-background-850"
+                class="hover:bg-primary hover:rounded-md text-light hover:text-background px-4 py-2 cursor-pointer mx-4 border-y-2 last:border-b-0 first:border-t-0 border-background-darker"
                 @click="selectOption(option)"
               >
                 {{ option.text }}
@@ -142,7 +142,7 @@
           >Why?</label
         >
         <textarea
-          class="w-full bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow whitespace-pre-line resize-none"
+          class="w-full bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow whitespace-pre-line resize-none"
           type="text"
           :rows="textareaRows"
           v-model="form.why"
@@ -207,7 +207,7 @@
           >Name</label
         >
         <input
-          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
+          class="w-1/2 bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow"
           type="text"
           v-model="form.name"
           placeholder="Name"
@@ -223,7 +223,7 @@
           >Email</label
         >
         <input
-          class="w-1/2 bg-background text-light text-sm border-2 border-background-850 rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow group-email invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
+          class="w-1/2 bg-background text-light text-sm border-2 border-background-darker rounded-md px-3 py-2 transition duration-300 ease focus:outline-none focus:border-light hover:border-light shadow-sm focus:shadow group-email invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-700"
           type="email"
           v-model="form.email"
           placeholder="Email"

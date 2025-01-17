@@ -3,10 +3,6 @@ $background: theme('colors.background.DEFAULT');
 $primary: theme('colors.primary');
 $secondary: theme('colors.secondary');
 
-// Convert to tailwind. Fix error view page
-$headerheight: 80px;
-$footerheight: 250px;
-
 *,
 *::before,
 *::after {
