@@ -15,7 +15,7 @@
       </div>
       <!-- Loop through project IDs and dynamically assign components -->
       <template v-for="projectId in projectIds" :key="projectId">
-        <hr />
+        <hr class="m-0 border-primary border-t-8 border-dashed" />
         <component :is="getComponentById(projectId)" :id="projectId" />
       </template>
     </section>
@@ -62,13 +62,3 @@ const getComponentById = (id: number) => {
   }
 }
 </script>
-
-<style lang="scss">
-@import '../assets/main.scss';
-
-hr {
-  margin: 0;
-  border: none;
-  border-top: 10px dashed theme('colors.primary');
-}
-</style>

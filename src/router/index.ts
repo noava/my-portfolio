@@ -31,7 +31,8 @@ const router = createRouter({
     if (to.path === '/projects') {
       return {
         el: '#projects',
-        behavior: 'smooth'
+        behavior: 'smooth',
+        top: 70
       }
     }
     if (to.hash === '#contact' || from.hash === '#contact') {
