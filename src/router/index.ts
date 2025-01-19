@@ -29,11 +29,16 @@ const router = createRouter({
   ],
   scrollBehavior(to, from, savedPosition) {
     if (to.path === '/projects') {
-      return {
-        el: '#projects',
-        behavior: 'smooth',
-        top: 70
-      }
+      return new Promise((resolve) => {
+        // Wait for the DOM to render
+        setTimeout(() => {
+          resolve({
+            el: '#projects',
+            behavior: 'smooth',
+            top: 70 // Adjust as needed
+          })
+        }, 100) // Adjust delay time if necessary
+      })
     }
     if (to.hash === '#contact' || from.hash === '#contact') {
       return { savedPosition }
