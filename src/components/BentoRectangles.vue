@@ -106,7 +106,7 @@
         <div class="absolute h-[20rem] p-2 rotate-[9deg] bg-orange-400 w-[13rem]"></div>
         <div class="absolute h-[20rem] p-2 rotate-[2deg] bg-cyan-500 w-[13rem]"></div>
         <img
-          class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg]"
+          class="absolute h-[20rem] p-2 lg:hover:scale-110 cursor-pointer rotate-[-8deg] hover:rotate-[0deg] transition-all"
           src="https://nrgbyqrjjpgsmgesvyea.supabase.co/storage/v1/object/public/project_images/Posters/Cowboy%20Bebop.webp"
           alt="Poster of Cowboy Bebop I've designed"
           @click="

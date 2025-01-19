@@ -11,7 +11,7 @@
     <div
       :class="[
         isMenuOpen ? 'block' : 'hidden',
-        'absolute top-24 right-3 lg:right-0 bg-navbarfooter bg-opacity-50 backdrop-blur w-[20rem] lg:w-[28rem] p-4 shadow-lg rounded-lg text-right text-3xl lg:text-5xl space-y-2 lg:space-y-4'
+        'absolute top-24 right-3 lg:right-0 bg-navbarfooter bg-opacity-50 backdrop-blur w-[15rem] lg:w-[20rem] p-4 shadow-lg rounded-lg text-right text-3xl lg:text-5xl space-y-2 lg:space-y-4'
       ]"
       @click="closeMenu"
     >
