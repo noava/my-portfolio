@@ -23,7 +23,7 @@
           </div>
           <div class="flex justify-center items-center ps-2">
             <span class="material-symbols-outlined text-3xl lg:text-5xl">arrow_left_alt</span>
-            <span class="text-xl lg:text-3xl ps-2">platforms</span>
+            <span class="text-xl lg:text-3xl ps-2">platforms &#128064;</span>
           </div>
         </div>
         <div class="flex flex-col justify-center items-center max-lg:order-first max-lg:pb-10">
@@ -36,14 +36,16 @@
             @click="router.push({ hash: '#contact' })"
           />
           <span class="w-80 text-base pt-6"
-            >Reach out if you are interesting in designing or would like to offer me a job.</span
+            >Reach out if you are interesting in designing or would like to offer me a job!</span
           >
         </div>
       </div>
 
       <div class="p-2 pt-10">
         <NoavaHover class="w-full h-[18vw] max-h-[30rem]" />
-        <div class="w-full text-right text-sm py-4">© 2024 Niklas Vezina</div>
+        <div class="w-full text-right text-sm py-4">
+          © {{ new Date().getFullYear() }} Niklas Vezina
+        </div>
       </div>
     </div>
   </div>

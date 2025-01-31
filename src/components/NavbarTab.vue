@@ -11,7 +11,7 @@
     <div
       :class="[
         isMenuOpen ? 'block' : 'hidden',
-        'absolute top-24 right-3 lg:right-0 bg-navbarfooter bg-opacity-50 backdrop-blur w-[15rem] lg:w-[20rem] p-4 shadow-lg rounded-lg text-right text-3xl lg:text-5xl space-y-2 lg:space-y-4'
+        'absolute top-24 right-3 lg:right-0 bg-navbarfooter bg-opacity-50 backdrop-blur w-[15rem] lg:w-[23rem] p-4 shadow-lg rounded-lg text-right text-3xl lg:text-5xl space-y-2 lg:space-y-4'
       ]"
       @click="closeMenu"
     >
@@ -31,6 +31,14 @@
           brand_family
         </span>
       </RouterLink>-->
+      <RouterLink
+        class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
+        to="/3d-scene"
+        >3d Scene
+        <span class="material-symbols-outlined text-3xl lg:text-5xl align-middle">
+          3d_rotation
+        </span></RouterLink
+      >
       <RouterLink
         class="block p-2 font-black hover:tracking-widest hover:saturate-[300%]"
         to="#contact"

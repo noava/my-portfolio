@@ -275,7 +275,8 @@ const selectedOption = ref('')
 const options = ref([
   { value: 'job_offer', text: 'Job offer' },
   { value: 'ui_ux', text: 'UI / UX' },
-  { value: 'posters', text: 'Posters' }
+  { value: 'posters', text: 'Posters' },
+  { value: 'other', text: 'Other' }
 ])
 
 const form = ref({
