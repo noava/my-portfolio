@@ -13,10 +13,11 @@
         </h1>
         <h2 class="text-[5vw] lg:text-4xl">Includes graphic design and web design</h2>
       </div>
-      <!-- Loop through project IDs and dynamically assign components -->
-      <template v-for="projectId in projectIds" :key="projectId">
+      <!-- Loop through projects and dynamically assign components -->
+      <!-- Id is sorted by how important the projects are -->
+      <template v-for="project in projects" :key="project.id">
         <hr class="m-0 border-primary border-t-8 border-dashed" />
-        <component :is="getComponentById(projectId)" :id="projectId" />
+        <component :is="getComponentByTitle(project.title)" :id="project.id" />
       </template>
     </section>
   </main>
@@ -30,33 +31,33 @@ import BasicProject from '../components/projects/BasicProject.vue'
 import CrewBadgeProject from '../components/projects/CrewBadge.vue'
 import BentoRectangles from '../components/BentoRectangles.vue'
 
-const projectIds = ref<number[]>([])
+const projects = ref<{ id: number; title: string }[]>([])
 
 onMounted(async () => {
-  await getAllProjectIds()
+  await getAllProjects()
 })
 
 // Gets all projects with their IDs
-const getAllProjectIds = async () => {
+const getAllProjects = async () => {
   const { data, error } = await supabase
     .from('projects')
-    .select('id')
+    .select('id, title')
     .order('id', { ascending: true })
   if (error) {
     console.error('Error fetching projects:', error)
     return
   }
   if (data) {
-    projectIds.value = data.map((project: { id: number }) => project.id)
+    projects.value = data
   }
 }
 
 // Dynamically assign components. Add cases for each custom component
-const getComponentById = (id: number) => {
-  switch (id) {
-    case 2:
-      return CrewBadgeProject // Custom component
-    // Make custom for case 5. Mellow Nightmare
+const getComponentByTitle = (title: string) => {
+  switch (title) {
+    case 'CREW Badge':
+      return CrewBadgeProject // Custom component for CREW Badge
+
     default:
       return BasicProject // Default to BasicProject
   }
